@@ -1,0 +1,22 @@
+{
+  "name": "intro-to-rx",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/andrewlistopadov/intro-to-rx.git",
+  "author": "Andrew Listopadov <andrew.listopadov@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server --mode development"
+  },
+  "dependencies": {
+    "rxjs": "^6.4.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.4.2",
+    "webpack": "^4.29.6",
+    "webpack-dev-server": "^3.3.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.0"
+  }
+}
