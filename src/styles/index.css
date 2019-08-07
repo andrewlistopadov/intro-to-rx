@@ -1,20 +1,30 @@
 * {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+html,
+body,
+main {
+  height: 100%;
   margin: 0;
 }
 
-html, body, main {
-  height: 100%;
+main {
+  padding: 20px;
+  background-color: #b0e0e6;
 }
 
-ul {
-  list-style-type: none;
-  padding: 20px;
+button {
+  padding: 5px 10px;
 }
 
-li {
-  padding: 20px;
-  background: #fff;
-  margin-bottom: 5px;
-}
+/*
+http://colours.neilorangepeel.com/
+blue: #00ACE9;
+red: #D43F3F;
+green: #6A9A1F;
+beige: #F6F6E8;
+grey: #404040;
+*/
