@@ -1,5 +1,5 @@
 import './styles/index.css';
-import { fromEvent, pipe } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { throttleTime, map } from 'rxjs/operators';
 
 const button = document.querySelector('button');
