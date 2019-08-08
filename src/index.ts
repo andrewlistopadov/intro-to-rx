@@ -1,13 +1,12 @@
 import './styles/index.css';
-import { fromEvent } from 'rxjs';
-import { throttleTime, map } from 'rxjs/operators';
+import {basicCaseButton} from './cases/basic';
 
-const button = document.querySelector('button');
-fromEvent(button, 'click')
-  .pipe(
-    throttleTime(1000),
-    map((event: MouseEvent) => `x: ${event.clientX}; y: ${event.clientY};`)
-  )
-  .subscribe(coordinates => {
-    return console.log(coordinates);
-  });
+const container = document.createDocumentFragment();
+
+const elementsToBeAppended = [
+  basicCaseButton
+];
+elementsToBeAppended.forEach(e => container.appendChild(e));
+
+const casesContainer = document.querySelector('.cases-container');
+casesContainer.appendChild(container);
