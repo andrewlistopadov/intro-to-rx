@@ -13,11 +13,28 @@ main {
 
 main {
   padding: 20px;
-  background-color: #b0e0e6;
+  background-color: #FFF;
 }
 
 button {
-  padding: 5px 10px;
+  color: #000;
+  background-color: #ececec;
+  transition: all 0.2s ease-in-out;
+  padding: 0 1em;
+  margin: .5em 0;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  line-height: 2em;
+}
+
+button:hover, button:focus, button:active {
+  color: #FFF;
+  background-color: #00ACE9;
+}
+
+button + button {
+  margin-left: 1em;
 }
 
 /*
