@@ -34,7 +34,7 @@ button:hover, button:focus, button:active {
 }
 
 button + button {
-  margin-left: 1em;
+  margin-left: .5em;
 }
 
 /*
