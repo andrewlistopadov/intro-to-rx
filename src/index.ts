@@ -1,10 +1,12 @@
 import './styles/index.css';
 import {basicCaseButton} from './cases/basic';
+import {filterCaseButton} from './cases/filter';
 
 const container = document.createDocumentFragment();
 
 const elementsToBeAppended = [
-  basicCaseButton
+  basicCaseButton,
+  filterCaseButton
 ];
 elementsToBeAppended.forEach(e => container.appendChild(e));
 
