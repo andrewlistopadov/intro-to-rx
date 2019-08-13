@@ -15,11 +15,11 @@ export const basicCaseButton = createButton('Basic');
 
 // const thread = from(Promise.resolve(100));
 
-// const thread = timer(1000, 500); // starts after 1000 msec and raises new values each 500 msec
+// const thread = timer(1000, 500); // starts after 1000 msec and emits new values each 500 msec
 
-// const thread = interval(500); // raises new values each 500 msec
+// const thread = interval(500); // emits new values each 500 msec
 
-// const thread = range(0, 100); // raises values from 0 to 99 and then complete
+// const thread = range(0, 100); // emits values from 0 to 99 and then complete
 
 // const thread = empty(); // immediately completes with no values
 
