@@ -28,7 +28,7 @@ export const basicCaseButton = createButton('Basic');
 const thread = fromEvent(basicCaseButton, 'click')
   .pipe(
     throttleTime(1000),
-    map((event: MouseEvent) => `x: ${event.clientX}; y: ${event.clientY};`)
+    map((event: MouseEvent) => `(x: ${event.clientX}; y: ${event.clientY});`)
   );
 
 thread.subscribe({
