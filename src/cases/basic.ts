@@ -4,34 +4,34 @@ import { createButton } from '../utils/dom-elements-provider';
 
 export const basicCaseButton = createButton('Basic');
 
-// const thread = Observable.create((observer: Observer<string>) => {
+// const stream = Observable.create((observer: Observer<string>) => {
 //   observer.next('Ready');
 //   observer.next('Steady');
 //   observer.next('Go!!!');
 //   observer.complete();
 // });
 
-// const thread = of([1,2,3], 'yay!', undefined, null, 0);
+// const stream = of([1,2,3], 'yay!', undefined, null, 0);
 
-// const thread = from(Promise.resolve(100));
+// const stream = from(Promise.resolve(100));
 
-// const thread = timer(1000, 500); // starts after 1000 msec and emits new values each 500 msec
+// const stream = timer(1000, 500); // starts after 1000 msec and emits new values each 500 msec
 
-// const thread = interval(500); // emits new values each 500 msec
+// const stream = interval(500); // emits new values each 500 msec
 
-// const thread = range(0, 100); // emits values from 0 to 99 and then complete
+// const stream = range(0, 100); // emits values from 0 to 99 and then complete
 
-// const thread = empty(); // immediately completes with no values
+// const stream = empty(); // immediately completes with no values
 
-// const thread = throwError('An error has occurred.');
+// const stream = throwError('An error has occurred.');
 
-const thread = fromEvent(basicCaseButton, 'click')
+const stream = fromEvent(basicCaseButton, 'click')
   .pipe(
     throttleTime(1000),
     map((event: MouseEvent) => `(x: ${event.clientX}; y: ${event.clientY});`)
   );
 
-thread.subscribe({
+stream.subscribe({
   next: (value: any) => console.log(`Next: ${value}`),
   error: (error: Error) => console.log(`Error: ${error}`),
   complete: () => console.log(`Completed!`)

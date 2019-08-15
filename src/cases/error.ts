@@ -4,7 +4,7 @@ import { catchError, mergeMap, retry, retryWhen, delay } from 'rxjs/operators';
 
 export const errorCaseButton = createButton('Error');
 fromEvent(errorCaseButton, 'click').subscribe(() => {
-  const thread = interval(1000).pipe(
+  const stream = interval(1000).pipe(
     mergeMap((val: number) => (val > 3 ? throwError('value > 3') : of(val))),
     // catchError(error => {
     //   console.log(`caught exception: ${error}`);
@@ -14,7 +14,7 @@ fromEvent(errorCaseButton, 'click').subscribe(() => {
     retryWhen(errorObservable => errorObservable.pipe(delay(3000))) // waits for 3 sec. before rerunning
   );
 
-  thread.subscribe({
+  stream.subscribe({
     next: (value: any) => console.log(`Next: ${value}`),
     error: (error: Error) => console.log(`Error: ${error}`),
     complete: () => console.log(`Completed!`)

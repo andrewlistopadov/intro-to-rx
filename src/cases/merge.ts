@@ -19,11 +19,11 @@ import {
 
 export const mergeCaseButton = createButton('Merge');
 fromEvent(mergeCaseButton, 'click').subscribe(() => {
-  // const thread = getGroupA();
+  // const stream = getGroupA();
 
-  const thread = getGroupB();
+  const stream = getGroupB();
 
-  thread.subscribe({
+  stream.subscribe({
     next: (value: any) => console.log(`Next: ${value}`),
     error: (error: Error) => console.log(`Error: ${error}`),
     complete: () => console.log(`Completed!`)
