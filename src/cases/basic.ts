@@ -11,6 +11,13 @@ export const basicCaseButton = createButton('Basic');
 //   observer.complete();
 // });
 
+// const stream = Observable.create((observer: Observer<string>) => {
+//   observer.next('Ready');
+//   observer.next('Steady');
+//   observer.error('Oops!...');
+//   observer.complete(); // won't be called cause on error observable marked as done, no new values will be emitted
+// });
+
 // const stream = of([1,2,3], 'yay!', undefined, null, 0);
 
 // const stream = from(Promise.resolve(100));
