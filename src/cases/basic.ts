@@ -1,15 +1,27 @@
-import { fromEvent, Observable, Observer, of, from, timer, interval, range, empty, throwError } from 'rxjs';
-import { throttleTime, map } from 'rxjs/operators';
+import {
+  fromEvent,
+  Observable,
+  Observer,
+  of,
+  from,
+  timer,
+  interval,
+  range,
+  empty,
+  throwError
+} from 'rxjs';
+import { throttleTime, map, switchMap } from 'rxjs/operators';
 import { createButton } from '../utils/dom-elements-provider';
 
 export const basicCaseButton = createButton('Basic');
 
-// const stream = Observable.create((observer: Observer<string>) => {
-//   observer.next('Ready');
-//   observer.next('Steady');
-//   observer.next('Go!!!');
-//   observer.complete();
-// });
+const stream = Observable.create((observer: Observer<string>) => {
+  observer.next('Ready');
+  observer.next('Steady');
+  observer.next('Go!!!');
+  observer.complete();
+  observer.next('And... nothing has happenned'); // won't be emitted after observable is completed
+});
 
 // const stream = Observable.create((observer: Observer<string>) => {
 //   observer.next('Ready');
@@ -32,14 +44,17 @@ export const basicCaseButton = createButton('Basic');
 
 // const stream = throwError('An error has occurred.');
 
-const stream = fromEvent(basicCaseButton, 'click')
-  .pipe(
-    throttleTime(1000),
-    map((event: MouseEvent) => `(x: ${event.clientX}; y: ${event.clientY});`)
-  );
+const clickStream = fromEvent(basicCaseButton, 'click');
 
-stream.subscribe({
+const resultStream = clickStream.pipe(
+  throttleTime(500),
+  switchMap(_ => stream)
+);
+
+const observer = {
   next: (value: any) => console.log(`Next: ${value}`),
   error: (error: Error) => console.log(`Error: ${error}`),
   complete: () => console.log(`Completed!`)
-});
+};
+
+resultStream.subscribe(observer);

@@ -14,21 +14,12 @@ import {
   withLatestFrom,
   pairwise,
   race,
-  mapTo
+  mapTo,
+  throttleTime,
+  switchMap
 } from 'rxjs/operators';
 
 export const mergeCaseButton = createButton('Merge');
-fromEvent(mergeCaseButton, 'click').subscribe(() => {
-  // const stream = getGroupA();
-
-  const stream = getGroupB();
-
-  stream.subscribe({
-    next: (value: any) => console.log(`Next: ${value}`),
-    error: (error: Error) => console.log(`Error: ${error}`),
-    complete: () => console.log(`Completed!`)
-  });
-});
 
 function getGroupA() {
   const timerOne = timer(1000, 4000).pipe(take(3));
@@ -65,7 +56,7 @@ function getGroupB() {
   // emits values upon receipt
   // return merge(timerOne, timerTwo);
 
-  // emits starting value at hte beginning of the events chain
+  // emits starting value at the beginning of the events chain
   // return timerOne.pipe(startWith('some starting value'));
 
   // here 'latest' means latest in time
@@ -77,3 +68,22 @@ function getGroupB() {
   // first starting observable wins
   return timerOne.pipe(race(timerTwo, timerThree));
 }
+
+// const stream = getGroupA();
+
+const stream = getGroupB();
+
+const clickStream = fromEvent(mergeCaseButton, 'click');
+
+const resultStream = clickStream.pipe(
+  throttleTime(500),
+  switchMap(_ => stream)
+);
+
+const observer = {
+  next: (value: any) => console.log(`Next: ${value}`),
+  error: (error: Error) => console.log(`Error: ${error}`),
+  complete: () => console.log(`Completed!`)
+};
+
+resultStream.subscribe(observer);
