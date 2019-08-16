@@ -26,15 +26,12 @@ button {
   border-radius: 2px;
   cursor: pointer;
   line-height: 2em;
+  margin-right: .5em;
 }
 
 button:hover, button:focus, button:active {
   color: #FFF;
   background-color: #00ACE9;
-}
-
-button + button {
-  margin-left: .5em;
 }
 
 /*

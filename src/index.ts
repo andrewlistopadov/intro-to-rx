@@ -4,11 +4,13 @@ import { filterCaseButton } from './cases/filter';
 import { mergeCaseButton } from './cases/merge';
 import { transformCaseButton } from './cases/transform';
 import { errorCaseButton } from './cases/error';
+import {subjectCaseButton} from './cases/subject';
 
 const container = document.createDocumentFragment();
 
 const elementsToBeAppended = [
   basicCaseButton,
+  subjectCaseButton,
   filterCaseButton,
   mergeCaseButton,
   transformCaseButton,

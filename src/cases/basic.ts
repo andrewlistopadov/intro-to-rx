@@ -44,6 +44,7 @@ const stream = Observable.create((observer: Observer<string>) => {
 
 // const stream = throwError('An error has occurred.');
 
+// ------------------------------------------------------------------------------
 const clickStream = fromEvent(basicCaseButton, 'click');
 
 const resultStream = clickStream.pipe(
