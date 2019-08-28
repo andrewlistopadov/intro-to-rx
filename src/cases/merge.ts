@@ -18,6 +18,7 @@ import {
   throttleTime,
   switchMap
 } from 'rxjs/operators';
+import { getObserver } from '../utils/observer-provider';
 
 export const mergeCaseButton = createButton('Merge');
 
@@ -80,10 +81,4 @@ const resultStream = clickStream.pipe(
   switchMap(_ => stream)
 );
 
-const observer = {
-  next: (value: any) => console.log(`Next: ${value}`),
-  error: (error: Error) => console.log(`Error: ${error}`),
-  complete: () => console.log(`Completed!`)
-};
-
-resultStream.subscribe(observer);
+resultStream.subscribe(getObserver());

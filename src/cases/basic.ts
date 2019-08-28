@@ -12,6 +12,7 @@ import {
 } from 'rxjs';
 import { throttleTime, map, switchMap } from 'rxjs/operators';
 import { createButton } from '../utils/dom-elements-provider';
+import {getObserver} from '../utils/observer-provider';
 
 export const basicCaseButton = createButton('Basic');
 
@@ -52,10 +53,4 @@ const resultStream = clickStream.pipe(
   switchMap(_ => stream)
 );
 
-const observer = {
-  next: (value: any) => console.log(`Next: ${value}`),
-  error: (error: Error) => console.log(`Error: ${error}`),
-  complete: () => console.log(`Completed!`)
-};
-
-resultStream.subscribe(observer);
+resultStream.subscribe(getObserver());

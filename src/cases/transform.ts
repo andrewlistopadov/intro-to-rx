@@ -9,8 +9,11 @@ import {
   flatMap,
   switchMap,
   exhaustMap,
-  throttleTime
+  throttleTime,
+  tap,
+  switchAll
 } from 'rxjs/operators';
+import { getObserver } from '../utils/observer-provider';
 
 export const transformCaseButton = createButton('Transform');
 
@@ -41,24 +44,11 @@ const clickStream = fromEvent(transformCaseButton, 'click');
 // );
 
 // starts new observable every click and stops previous observable
-// const stream = clickStream.pipe(switchMap(_ => interval(1000)));
-// const stream = interval(1000);
-// const resultStream = clickStream.pipe(
-//   throttleTime(500),
-//   switchMap(_ => stream)
-// );
-
-// when new observable
 const stream = interval(1000);
 const resultStream = clickStream.pipe(
+  tap(() => console.log('click')),
   throttleTime(500),
-  exhaustMap(_ => stream)
+  switchMap(_ => stream)
 );
 
-const observer = {
-  next: (value: any) => console.log(`Next: ${value}`),
-  error: (error: Error) => console.log(`Error: ${error}`),
-  complete: () => console.log(`Completed!`)
-};
-
-resultStream.subscribe(observer);
+resultStream.subscribe(getObserver());

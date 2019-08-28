@@ -1,6 +1,7 @@
 import { fromEvent, interval, throwError, of } from 'rxjs';
 import { createButton } from '../utils/dom-elements-provider';
 import { catchError, mergeMap, retry, retryWhen, delay, throttleTime, switchMap } from 'rxjs/operators';
+import {getObserver} from '../utils/observer-provider';
 
 export const errorCaseButton = createButton('Error');
 
@@ -21,10 +22,4 @@ const resultStream = clickStream.pipe(
   switchMap(_ => stream)
 );
 
-const observer = {
-  next: (value: any) => console.log(`Next: ${value}`),
-  error: (error: Error) => console.log(`Error: ${error}`),
-  complete: () => console.log(`Completed!`)
-};
-
-resultStream.subscribe(observer);
+resultStream.subscribe(getObserver());
