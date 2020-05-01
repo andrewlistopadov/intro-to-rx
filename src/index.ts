@@ -16,9 +16,9 @@ const elementsToBeAppended = [
   mergeCaseButton,
   transformCaseButton,
   errorCaseButton,
-  hotNColdCaseButton
+  hotNColdCaseButton,
 ];
-elementsToBeAppended.forEach(e => container.appendChild(e));
+elementsToBeAppended.forEach((e) => container.appendChild(e));
 
 const casesContainer = document.querySelector('.cases-container');
 casesContainer.appendChild(container);

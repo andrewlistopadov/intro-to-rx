@@ -1,12 +1,4 @@
-import {
-  fromEvent,
-  timer,
-  combineLatest,
-  zip,
-  forkJoin,
-  concat,
-  merge
-} from 'rxjs';
+import { fromEvent, timer, combineLatest, zip, forkJoin, concat, merge } from 'rxjs';
 import { createButton } from '../utils/dom-elements-provider';
 import {
   take,
@@ -16,7 +8,7 @@ import {
   race,
   mapTo,
   throttleTime,
-  switchMap
+  switchMap,
 } from 'rxjs/operators';
 import { getObserver } from '../utils/observer-provider';
 
@@ -38,18 +30,9 @@ function getGroupA() {
 }
 
 function getGroupB() {
-  const timerOne = timer(0, 1000).pipe(
-    take(3),
-    mapTo('first')
-  );
-  const timerTwo = timer(0, 100).pipe(
-    take(3),
-    mapTo('second')
-  );
-  const timerThree = timer(0, 75).pipe(
-    take(3),
-    mapTo('third')
-  );
+  const timerOne = timer(0, 1000).pipe(take(3), mapTo('first'));
+  const timerTwo = timer(0, 100).pipe(take(3), mapTo('second'));
+  const timerThree = timer(0, 75).pipe(take(3), mapTo('third'));
 
   // emits values according observable order despite that second observable emits events much faster
   // return concat(timerOne, timerTwo);
@@ -78,7 +61,7 @@ const clickStream = fromEvent(mergeCaseButton, 'click');
 
 const resultStream = clickStream.pipe(
   throttleTime(500),
-  switchMap(_ => stream)
+  switchMap((_) => stream),
 );
 
 resultStream.subscribe(getObserver());
