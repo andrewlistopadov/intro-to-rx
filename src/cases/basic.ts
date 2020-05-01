@@ -12,7 +12,7 @@ import {
 } from 'rxjs';
 import { throttleTime, map, switchMap } from 'rxjs/operators';
 import { createButton } from '../utils/dom-elements-provider';
-import {getObserver} from '../utils/observer-provider';
+import { getObserver } from '../utils/observer-provider';
 
 export const basicCaseButton = createButton('Basic');
 

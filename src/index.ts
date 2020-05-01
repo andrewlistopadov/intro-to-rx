@@ -4,7 +4,8 @@ import { filterCaseButton } from './cases/filter';
 import { mergeCaseButton } from './cases/merge';
 import { transformCaseButton } from './cases/transform';
 import { errorCaseButton } from './cases/error';
-import {subjectCaseButton} from './cases/subject';
+import { subjectCaseButton } from './cases/subject';
+import { hotNColdCaseButton } from './cases/hot-n-cold';
 
 const container = document.createDocumentFragment();
 
@@ -14,7 +15,8 @@ const elementsToBeAppended = [
   filterCaseButton,
   mergeCaseButton,
   transformCaseButton,
-  errorCaseButton
+  errorCaseButton,
+  hotNColdCaseButton
 ];
 elementsToBeAppended.forEach(e => container.appendChild(e));
 
