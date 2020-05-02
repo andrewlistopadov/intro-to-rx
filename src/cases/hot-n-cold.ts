@@ -27,15 +27,15 @@ const sharedStream = stream.pipe(share());
 // OBSERVER A
 setTimeout(() => {
   // stream.subscribe((data: string) => {
-  sharedStream.subscribe((data: string) => {
-    console.log(`Observer A. ${data}`);
-  });
+  // sharedStream.subscribe((data: string) => {
+  //   console.log(`Observer A. ${data}`);
+  // });
 }, 0);
 
 // OBSERVER B
 setTimeout(() => {
   // stream.subscribe((data: string) => {
-  sharedStream.subscribe((data: string) => {
-    console.log(`Observer B. ${data}`);
-  });
+  // sharedStream.subscribe((data: string) => {
+  //   console.log(`Observer B. ${data}`);
+  // });
 }, 3000);
