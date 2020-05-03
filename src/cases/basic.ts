@@ -18,14 +18,13 @@ export const basicCaseButton = createButton('Basic');
 
 const stream = new Observable(function subscribe(subscriber) {
   let counter = 0;
-  const id = setInterval(() => {
-    if (counter === 10) {
-      subscriber.complete();
-      clearInterval(id);
-    }
-
+  const intervalId = setInterval(() => {
     subscriber.next(++counter);
-  }, 100);
+  }, 200);
+
+  return function unsubscribe() {
+    clearInterval(intervalId);
+  };
 });
 
 // const stream = Observable.create((observer: Observer<string>) => {
@@ -60,8 +59,9 @@ const stream = new Observable(function subscribe(subscriber) {
 // ------------------------------------------------------------------------------
 const clickStream = fromEvent(basicCaseButton, 'click');
 
-// const resultStream = clickStream.pipe(switchMap((_) => stream));
-
-const resultStream = clickStream.pipe(mergeMap((_) => stream));
+const resultStream = clickStream.pipe(switchMap((_) => stream));
 
 resultStream.subscribe(getObserver('Basic'));
+
+const subscription = stream.subscribe(getObserver('Basic'));
+setTimeout(() => subscription.unsubscribe(), 2000);
