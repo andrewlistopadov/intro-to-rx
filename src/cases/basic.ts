@@ -16,13 +16,25 @@ import { getObserver } from '../utils/observer-provider';
 
 export const basicCaseButton = createButton('Basic');
 
-const stream = Observable.create((observer: Observer<string>) => {
-  observer.next('Ready');
-  observer.next('Steady');
-  observer.next('Go!!!');
-  observer.complete();
-  observer.next('And... nothing has happenned'); // won't be emitted after observable is completed
+const stream = new Observable(function subscribe(subscriber) {
+  let counter = 0;
+  const id = setInterval(() => {
+    if (counter === 10) {
+      subscriber.complete();
+      clearInterval(id);
+    }
+
+    subscriber.next(++counter);
+  }, 100);
 });
+
+// const stream = Observable.create((observer: Observer<string>) => {
+//   observer.next('Ready');
+//   observer.next('Steady');
+//   observer.next('Go!!!');
+//   observer.complete();
+//   observer.next('And... nothing has happenned'); // won't be emitted after observable is completed
+// });
 
 // const stream = Observable.create((observer: Observer<string>) => {
 //   observer.next('Ready');
@@ -48,9 +60,6 @@ const stream = Observable.create((observer: Observer<string>) => {
 // ------------------------------------------------------------------------------
 const clickStream = fromEvent(basicCaseButton, 'click');
 
-const resultStream = clickStream.pipe(
-  throttleTime(500),
-  switchMap((_) => stream),
-);
+const resultStream = clickStream.pipe(switchMap((_) => stream));
 
 resultStream.subscribe(getObserver('Basic'));
