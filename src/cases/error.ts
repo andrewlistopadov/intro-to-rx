@@ -1,7 +1,15 @@
 import { fromEvent, interval, throwError, of } from 'rxjs';
 import { createButton } from '../utils/dom-elements-provider';
-import { catchError, mergeMap, retry, retryWhen, delay, throttleTime, switchMap } from 'rxjs/operators';
-import {getObserver} from '../utils/observer-provider';
+import {
+  catchError,
+  mergeMap,
+  retry,
+  retryWhen,
+  delay,
+  throttleTime,
+  switchMap,
+} from 'rxjs/operators';
+import { getObserver } from '../utils/observer-provider';
 
 export const errorCaseButton = createButton('Error');
 
@@ -12,14 +20,14 @@ const stream = interval(1000).pipe(
   //   return of('will be emitted');
   // }),
   // retry(2) // retry to run 2 times and then throughs exception
-  retryWhen(errorObservable => errorObservable.pipe(delay(3000))) // waits for 3 sec. before rerunning
+  retryWhen((errorObservable) => errorObservable.pipe(delay(3000))), // waits for 3 sec. before rerunning
 );
 
 const clickStream = fromEvent(errorCaseButton, 'click');
 
 const resultStream = clickStream.pipe(
   throttleTime(500),
-  switchMap(_ => stream)
+  switchMap((_) => stream),
 );
 
-resultStream.subscribe(getObserver());
+resultStream.subscribe(getObserver('Error'));

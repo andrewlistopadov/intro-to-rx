@@ -1,9 +1,9 @@
 import { Observer } from 'rxjs/internal/types';
 
-export function getObserver(): Observer<any> {
+export function getObserver(name: string): Observer<any> {
   return {
-    next: (value: any) => console.log(`Next: ${value}`),
-    error: (error: Error) => console.log(`Error: ${error}`),
-    complete: () => console.log(`Completed!`)
+    next: (value: any) => console.log(`${name}. Next: ${value}`),
+    error: (error: Error) => console.log(`${name}. Error: ${error}`),
+    complete: () => console.log(`${name}. Completed!`),
   };
 }

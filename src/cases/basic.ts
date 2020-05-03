@@ -8,7 +8,7 @@ import {
   interval,
   range,
   empty,
-  throwError
+  throwError,
 } from 'rxjs';
 import { throttleTime, map, switchMap } from 'rxjs/operators';
 import { createButton } from '../utils/dom-elements-provider';
@@ -50,7 +50,7 @@ const clickStream = fromEvent(basicCaseButton, 'click');
 
 const resultStream = clickStream.pipe(
   throttleTime(500),
-  switchMap(_ => stream)
+  switchMap((_) => stream),
 );
 
-resultStream.subscribe(getObserver());
+resultStream.subscribe(getObserver('Basic'));

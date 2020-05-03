@@ -18,9 +18,9 @@ import {
   takeUntil,
   skipWhile,
   takeWhile,
-  switchMap
+  switchMap,
 } from 'rxjs/operators';
-import {getObserver} from '../utils/observer-provider';
+import { getObserver } from '../utils/observer-provider';
 
 export const filterCaseButton = createButton('Filter');
 
@@ -62,7 +62,7 @@ const clickStream = fromEvent(filterCaseButton, 'click');
 
 const resultStream = clickStream.pipe(
   throttleTime(500),
-  switchMap(_ => stream)
+  switchMap((_) => stream),
 );
 
-resultStream.subscribe(getObserver());
+resultStream.subscribe(getObserver('Filter'));

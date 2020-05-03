@@ -11,7 +11,7 @@ import {
   exhaustMap,
   throttleTime,
   tap,
-  switchAll
+  switchAll,
 } from 'rxjs/operators';
 import { getObserver } from '../utils/observer-provider';
 
@@ -48,7 +48,7 @@ const stream = interval(1000);
 const resultStream = clickStream.pipe(
   tap(() => console.log('click')),
   throttleTime(500),
-  switchMap(_ => stream)
+  switchMap((_) => stream),
 );
 
-resultStream.subscribe(getObserver());
+resultStream.subscribe(getObserver('Transform'));

@@ -64,4 +64,4 @@ const resultStream = clickStream.pipe(
   switchMap((_) => stream),
 );
 
-resultStream.subscribe(getObserver());
+resultStream.subscribe(getObserver('Merge'));
