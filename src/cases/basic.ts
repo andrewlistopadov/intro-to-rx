@@ -10,7 +10,7 @@ import {
   empty,
   throwError,
 } from 'rxjs';
-import { throttleTime, map, switchMap } from 'rxjs/operators';
+import { throttleTime, map, switchMap, mergeMap } from 'rxjs/operators';
 import { createButton } from '../utils/dom-elements-provider';
 import { getObserver } from '../utils/observer-provider';
 
@@ -60,6 +60,8 @@ const stream = new Observable(function subscribe(subscriber) {
 // ------------------------------------------------------------------------------
 const clickStream = fromEvent(basicCaseButton, 'click');
 
-const resultStream = clickStream.pipe(switchMap((_) => stream));
+// const resultStream = clickStream.pipe(switchMap((_) => stream));
+
+const resultStream = clickStream.pipe(mergeMap((_) => stream));
 
 resultStream.subscribe(getObserver('Basic'));
