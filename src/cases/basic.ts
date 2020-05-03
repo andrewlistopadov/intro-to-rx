@@ -22,8 +22,10 @@ const stream = new Observable(function subscribe(subscriber) {
     subscriber.next(++counter);
   }, 200);
 
-  return function unsubscribe() {
-    clearInterval(intervalId);
+  return {
+    unsubscribe: () => {
+      clearInterval(intervalId);
+    },
   };
 });
 
