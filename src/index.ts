@@ -7,6 +7,7 @@ import { errorCaseButton } from './cases/error';
 import { subjectCaseButton } from './cases/subject';
 import { hotNColdCaseButton } from './cases/hot-n-cold';
 import { scanCaseButton } from './cases/scan';
+import { startWithCaseButton } from './cases/start-with';
 
 const container = document.createDocumentFragment();
 
@@ -19,8 +20,9 @@ const elementsToBeAppended = [
   errorCaseButton,
   hotNColdCaseButton,
   scanCaseButton,
+  startWithCaseButton,
 ];
-elementsToBeAppended.forEach((e) => container.appendChild(e));
+elementsToBeAppended.forEach((el) => container.appendChild(el));
 
 const casesContainer = document.querySelector('.cases-container');
 casesContainer.appendChild(container);

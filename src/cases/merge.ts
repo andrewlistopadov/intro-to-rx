@@ -5,10 +5,10 @@ import {
   startWith,
   withLatestFrom,
   pairwise,
-  race,
   mapTo,
   throttleTime,
   switchMap,
+  raceWith,
 } from 'rxjs/operators';
 import { getObserver } from '../utils/observer-provider';
 
@@ -26,7 +26,7 @@ function getGroupA() {
   // return zip(timerOne, timerTwo, timerThree);
 
   // emits new combined value when all of the observables are completed. It emits latest emitted values.
-  return forkJoin(timerOne, timerTwo, timerThree);
+  return forkJoin([timerOne, timerTwo, timerThree]);
 }
 
 function getGroupB() {
@@ -50,7 +50,7 @@ function getGroupB() {
   // return timerOne.pipe(pairwise());
 
   // first starting observable wins
-  return timerOne.pipe(race(timerTwo, timerThree));
+  return timerOne.pipe(raceWith(timerTwo, timerThree));
 }
 
 // const stream = getGroupA();

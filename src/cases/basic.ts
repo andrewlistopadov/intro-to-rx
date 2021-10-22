@@ -7,7 +7,6 @@ import {
   timer,
   interval,
   range,
-  empty,
   throwError,
 } from 'rxjs';
 import { throttleTime, map, switchMap, mergeMap } from 'rxjs/operators';
@@ -65,5 +64,5 @@ const resultStream = clickStream.pipe(switchMap((_) => stream));
 
 resultStream.subscribe(getObserver('Basic'));
 
-const subscription = stream.subscribe(getObserver('Basic'));
-setTimeout(() => subscription.unsubscribe(), 2000);
+// const subscription = stream.subscribe(getObserver('Basic'));
+// setTimeout(() => subscription.unsubscribe(), 2000);
