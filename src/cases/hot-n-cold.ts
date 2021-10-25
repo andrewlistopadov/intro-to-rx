@@ -4,7 +4,7 @@ import { createButton } from '../utils/dom-elements-provider';
 
 export const hotNColdCaseButton = createButton('Hot-n-Cold');
 
-const stream = Observable.create((observer: Observer<string>) => {
+const stream = new Observable((observer: Observer<string>) => {
   console.log('Observable is alive');
 
   const randomInt = () => Math.floor(Math.random() * 100);

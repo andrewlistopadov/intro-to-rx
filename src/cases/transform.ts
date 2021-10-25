@@ -6,12 +6,12 @@ import {
   scan,
   map,
   mapTo,
-  flatMap,
   switchMap,
   exhaustMap,
   throttleTime,
   tap,
   switchAll,
+  mergeMap,
 } from 'rxjs/operators';
 import { getObserver } from '../utils/observer-provider';
 
@@ -35,12 +35,11 @@ const clickStream = fromEvent(transformCaseButton, 'click');
 
 // ------------------------------------------------------------------
 
-// flatMap === mergeMap
 // starts new observable every click and does not stop previous observable
 // const stream = interval(1000);
 // const resultStream = clickStream.pipe(
 //   throttleTime(500),
-//   flatMap(_ => stream)
+//   mergeMap((_) => stream),
 // );
 
 // starts new observable every click and stops previous observable
